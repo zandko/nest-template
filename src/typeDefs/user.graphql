@@ -1,0 +1,26 @@
+type Users {
+  users: [User!]!
+}
+
+type User {
+  id: ID!
+  mobile: String!
+  email: String
+  password: String!
+  nickname: String
+  title: String
+  avatar: String
+  intro: String
+  isDelete: Boolean
+  deletedAt: Date
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+union UserResult = User | Users
+
+type Query {
+	users(offset: Int, limit: Int): [User!] @isAuthenticated
+	user(id: ID!): User @isAuthenticated
+  today: Date @date
+}
