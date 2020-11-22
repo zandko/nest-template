@@ -22,7 +22,7 @@ import {
 const pubsub = new PubSub()
 
 const MyRequestDidStartPlugin = {
-  requestDidStart(requestContext: GraphQLRequestContext) {
+  requestDidStart(_requestContext: GraphQLRequestContext) {
     return {
 			willSendResponse(requestContext) {
 				const { context, response } = requestContext
@@ -102,7 +102,7 @@ export class GraphqlService implements GqlOptionsFactory {
 					'general.betaUpdates': true,
 					'queryPlan.hideQueryPlanResponse': false,
 					'request.credentials': 'include', // possible values: 'omit', 'include', 'same-origin'
-					'tracing.hideTracingResponse': true
+					'tracing.hideTracingResponse': false
 				}
 				// tabs: [
 				// 	{

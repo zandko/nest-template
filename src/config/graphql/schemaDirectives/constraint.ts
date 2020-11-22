@@ -49,7 +49,6 @@ class ConstraintDirective extends SchemaDirectiveVisitor {
 
 	wrapType(field) {
 		const fieldName = field.astNode.name.value
-		console.log('aaaaaa')
 		if (
 			field.type instanceof GraphQLNonNull &&
 			field.type.ofType === GraphQLString

@@ -13,7 +13,6 @@ import chalk from 'chalk'
 import * as GraphqlSchema from '../../../generator/graphql.schema'
 
 import { PRIMARY_COLOR } from '@environments'
-
 class ValidateDirective extends SchemaDirectiveVisitor {
 	visitArgumentDefinition(
 		arg: GraphQLArgument,
@@ -28,7 +27,7 @@ class ValidateDirective extends SchemaDirectiveVisitor {
 		const { schema } = this.args
 
 		field.resolve = async function (...args) {
-			const { input } = args[1]
+			const { data } = args[1]
 
 			Logger.log(
 				`🧪  Schema: ${chalk.hex(PRIMARY_COLOR!).bold(`${schema!}`)}`,
@@ -36,13 +35,11 @@ class ValidateDirective extends SchemaDirectiveVisitor {
 				false
 			)
 
-			// console.log(arg, details, input, schema)
-
 			const prototype = arg.type.toString().replace('!', '')
 
 			const object = new GraphqlSchema[prototype]()
 
-			Object.assign(object, input)
+			Object.assign(object, data)
 
 			const errors = await validate(schema, object)
 
@@ -50,7 +47,6 @@ class ValidateDirective extends SchemaDirectiveVisitor {
 				throw new UserInputError(
 					`Form Arguments invalid: ${errors
 						.map((err) => {
-							// tslint:disable-next-line: forin
 							for (const property in err.constraints) {
 								return err.constraints[property]
 							}

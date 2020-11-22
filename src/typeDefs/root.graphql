@@ -27,6 +27,27 @@ directive @intl on FIELD_DEFINITION
 # rest
 directive @rest(url: String) on FIELD_DEFINITION
 
+# enum
+enum OrderDirection {
+  asc
+  desc
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+input PaginationInput {
+	skip: Int
+	after: String
+	before: String
+	first: Int
+	last: Int
+}
+
 scalar JSON
 scalar JSONObject
 scalar Date
@@ -34,5 +55,5 @@ scalar Upload
 
 schema {
 	query: Query
-	# mutation: Mutation
+	mutation: Mutation
 }

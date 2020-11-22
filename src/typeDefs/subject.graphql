@@ -1,0 +1,97 @@
+type Subject {
+  id: ID!
+  parentId: String!
+  name: String!
+  intro: String
+  sort: Int!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type SubjectConnection {
+  pageInfo: PageInfo!
+  edges: [SubjectEdge]!
+  totalCount: Int!
+}
+
+type SubjectEdge {
+  node: Subject!
+  cursor: String!
+}
+
+enum SubjectOrderBy {
+  id_ASC
+  id_DESC
+  parentId_ASC
+  parentId_DESC
+  name_ASC
+  name_DESC
+  sort_ASC
+  sort_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+input SubjectCreateInput {
+  name: String!
+  parentId: String
+  intro: String
+  sort: Int
+}
+
+input SubjectUpdateInput {
+  name: String
+  parentId: String
+  intro: String
+  sort: Int
+}
+
+input SubjectWhereUniqueInput {
+  id: ID
+  name: String
+}
+
+input SubjectWhereInput {
+  id: ID
+  parentId: String
+  name: String
+  intro: String
+  sort: Int
+  createdAt: Date
+  updatedAt: Date
+  AND: [SubjectWhereInput!]
+  OR: [SubjectWhereInput!]
+  NOT: [SubjectWhereInput!]
+}
+
+type Query {
+  subject(
+    where: SubjectWhereUniqueInput!
+  ): Subject
+  subjectsConnection(
+    where: SubjectWhereInput, 
+    orderBy: SubjectOrderBy, 
+    skip: Int,
+    after: String,
+    before: String,
+    first: Int,
+    last: Int,
+  ): SubjectConnection!
+}
+
+type Mutation {
+  createSubject(
+    data: SubjectCreateInput @validate(schema: "createSubjectInput")
+  ): Subject!
+  updateSubject(
+    data: SubjectUpdateInput!, 
+    where: SubjectWhereUniqueInput! @validate(schema: "updateSubjectInput")
+  ): Subject!
+  upsertSubject(
+    where: SubjectWhereUniqueInput!, 
+    create: SubjectCreateInput! @validate(schema: "createSubjectInput"), 
+    update: SubjectUpdateInput! @validate(schema: "updateSubjectInput")
+  ): Subject!
+}
