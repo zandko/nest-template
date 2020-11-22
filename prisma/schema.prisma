@@ -35,44 +35,6 @@ model Subject {
   name      String    @unique
   intro     String?
   sort      Int       @default(0)
-  // courses   Course[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
-
-// model Course {
-//   id               String        @id @default(cuid())
-//   subjectID        String
-//   teacherID        String
-//   title            String
-//   subjectTitle     String?
-//   cover            String
-//   level            CourseLevel
-//   intro            String
-//   claim            String
-//   learningOutcome  DateTime
-//   targetStudent    DateTime      @default(now())
-//   period           String
-//   rate             Float         @default(5.0)
-//   rateNum          Int           @default(0)
-//   viewNum          Int           @default(0)
-//   memberNum        Int           @default(0)
-//   isTop            Boolean       @default(false)
-//   status           CourseStatus
-//   isDelete         Boolean       @default(false)
-//   deletedAt        DateTime?
-//   createdAt        DateTime      @default(now())
-//   updatedAt        DateTime      @updatedAt
-// }
-
-// enum CourseStatus {
-//   DRAFT
-//   NORMAL  
-// }
-
-// enum CourseLevel {
-//   PRIMARY
-//   INTERMEDIATE
-//   EXPERT
-//   ALL
-// }
