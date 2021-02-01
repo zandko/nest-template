@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -28,10 +28,9 @@ model Subject {
 model Teacher {
   id  String  @id @default(cuid())
   name  String  @unique
-  avatar  String?
+  avatar  String
   intro String?
   sort  Int @default(0)
-  courses Course[]
   isDelete  Boolean @default(false)
   deletedAt DateTime?
   createdAt DateTime  @default(now())
@@ -50,12 +49,12 @@ model Course {
   claim String?
   outcome String?
   student String?
-  period  Float @default(0.0)
+  period  Float
   score  Float @default(5.0)
   scoreNum  Int @default(0)
   browseNum  Int @default(0)
   memberNum  Int @default(0)
-  isTop Boolean @default(false)
+  top Boolean @default(false)
   status  CourseStatus
   sort  Int @default(0)
   isDelete  Boolean @default(false)

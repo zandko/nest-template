@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url = "***"
 }
 
 generator client {
@@ -31,7 +31,6 @@ model Teacher {
   avatar  String?
   intro String?
   sort  Int @default(0)
-  courses Course[]
   isDelete  Boolean @default(false)
   deletedAt DateTime?
   createdAt DateTime  @default(now())

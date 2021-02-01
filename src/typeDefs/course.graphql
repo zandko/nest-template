@@ -1,0 +1,143 @@
+type Course {
+  id: ID!
+  title: String!
+  subTitle: String
+  cover: String!
+  level: CourseLevel!
+  intro: String
+  claim: String
+  outcome: String
+  student: String
+  period: Float!
+  score: Float!
+  scoreNum: Int!
+  browseNum: Int!
+  memberNum: Int!
+  isTop: Boolean!
+  status: CourseStatus!
+  sort: Int!
+  isDelete: Boolean!
+  deletedAt: Date
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+enum CourseLevel {
+  ALL
+  PRIMARY
+  INTERMEDIATE
+  EXPERT
+}
+
+enum CourseStatus {
+  DRAFT
+  NORMAL
+}
+
+
+type CourseConnection {
+  pageInfo: PageInfo!
+  edges: [CourseEdge]!
+  totalCount: Int!
+}
+
+type CourseEdge {
+  node: Course!
+  cursor: String!
+}
+
+enum CourseOrderBy {
+  id_ASC
+  id_DESC
+  score_ASC
+  score_DESC
+  scoreNum_ASC
+  scoreNum_DESC
+  browseNum_ASC
+  browseNum_DESC
+  memberNum_ASC
+  memberNum_DESC
+  isTop_ASC
+  isTop_DESC
+  isDelete_ASC
+  isDelete_DESC
+  deletedAt_ASC
+  deletedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+input CourseCreateInput {
+  subjectId: String!
+  teacherId: String!
+  title: String!
+  subTitle: String
+  cover: String!
+  level: CourseLevel!
+  intro: String
+  claim: String
+  outcome: String
+  student: String
+  isTop: Boolean
+  status: CourseStatus!
+  sort: Int
+  isDelete: Boolean
+}
+
+input CourseUpdateInput {
+  title: String
+  subTitle: String
+  cover: String
+  intro: String
+  claim: String
+  outcome: String
+  student: String
+  isTop: Boolean
+  status: CourseStatus
+  sort: Int
+  isDelete: Boolean
+}
+
+input CourseWhereUniqueInput {
+  id: ID
+  isDelete: Boolean
+}
+
+input CourseWhereInput {
+  id: ID
+  title: String
+  intro: String
+  AND: [CourseWhereInput!]
+  OR: [CourseWhereInput!]
+  NOT: [CourseWhereInput!]
+}
+
+type Query {
+  course(
+    where: CourseWhereUniqueInput!
+  ): Course
+  coursesConnection(
+    where: CourseWhereInput,
+    orderBy: CourseOrderBy,
+    skip: Int,
+    after: String,
+    before: String,
+    first: Int,
+    last: Int,
+  ): CourseConnection!
+}
+
+type Mutation {
+  createCourse(
+    data: CourseCreateInput!
+  ): Course!
+  deleteCourse(
+    where: CourseWhereUniqueInput!
+  ): Course!
+  updateCourse(
+    data: CourseUpdateInput!,
+    where: CourseWhereUniqueInput!
+  ): Course!
+}

@@ -31,4 +31,5 @@ import * as Resolvers from './resolvers'
 		PrismaService
 	]
 })
-export class AppModule {}
+export class AppModule {
+}

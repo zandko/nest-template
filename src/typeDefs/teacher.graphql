@@ -1,0 +1,96 @@
+type Teacher {
+  id: ID!
+  name: String!
+  avatar: String
+  intro: String
+  courses: [Course]!
+  sort: Int!
+  isDelete: Boolean!
+  deletedAt: Date
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+type TeacherConnection {
+  pageInfo: PageInfo!
+  edges: [TeacherEdge]!
+  totalCount: Int!
+}
+
+type TeacherEdge {
+  node: Teacher!
+  cursor: String!
+}
+
+enum TeacherOrderBy {
+  id_ASC
+  id_DESC
+  sort_ASC
+  sort_DESC
+  isDelete_ASC
+  isDelete_DESC
+  deletedAt_ASC
+  deletedAt_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+input TeacherCreateInput {
+  name: String!
+  avatar: String
+  intro: String
+  sort: Int
+  isDelete: Boolean
+}
+
+input TeacherUpdateInput {
+  name: String
+  avatar: String
+  intro: String
+  sort: Int
+  isDelete: Boolean
+}
+
+input TeacherWhereUniqueInput {
+  id: ID
+  name: String
+  isDelete: Boolean
+}
+
+input TeacherWhereInput {
+  id: ID
+  name: String
+  AND: [TeacherWhereInput!]
+  OR: [TeacherWhereInput!]
+  NOT: [TeacherWhereInput!]
+}
+
+type Query {
+  teacher(
+    where: TeacherWhereUniqueInput!
+  ): Teacher
+  teachersConnection(
+    where: TeacherWhereInput,
+    orderBy: TeacherOrderBy,
+    skip: Int,
+    after: String,
+    before: String,
+    first: Int,
+    last: Int,
+  ): TeacherConnection!
+}
+
+type Mutation {
+  createTeacher(
+    data: TeacherCreateInput!
+  ): Teacher!
+  deleteTeacher(
+    where: TeacherWhereUniqueInput!
+  ): Teacher!
+  updateTeacher(
+    data: TeacherUpdateInput!,
+    where: TeacherWhereUniqueInput!
+  ): Teacher!
+}

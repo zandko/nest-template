@@ -71,8 +71,8 @@ type Query {
     where: SubjectWhereUniqueInput!
   ): Subject
   subjectsConnection(
-    where: SubjectWhereInput, 
-    orderBy: SubjectOrderBy, 
+    where: SubjectWhereInput,
+    orderBy: SubjectOrderBy,
     skip: Int,
     after: String,
     before: String,
@@ -86,12 +86,12 @@ type Mutation {
     data: SubjectCreateInput @validate(schema: "createSubjectInput")
   ): Subject!
   updateSubject(
-    data: SubjectUpdateInput!, 
+    data: SubjectUpdateInput!,
     where: SubjectWhereUniqueInput! @validate(schema: "updateSubjectInput")
   ): Subject!
   upsertSubject(
-    where: SubjectWhereUniqueInput!, 
-    create: SubjectCreateInput! @validate(schema: "createSubjectInput"), 
+    where: SubjectWhereUniqueInput!,
+    create: SubjectCreateInput! @validate(schema: "createSubjectInput"),
     update: SubjectUpdateInput! @validate(schema: "updateSubjectInput")
   ): Subject!
 }
