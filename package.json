@@ -48,7 +48,7 @@
 	},
 	"dependencies": {
 		"@apollo/federation": "^0.20.4",
-		"@apollo/gateway": "^0.21.1",
+		"@apollo/gateway": "^0.54.1",
 		"@devoxa/prisma-relay-cursor-connection": "^1.1.0",
 		"@nestjs/bull": "^0.3.0",
 		"@nestjs/common": "^7.5.3",
