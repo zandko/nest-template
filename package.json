@@ -54,7 +54,7 @@
 		"@nestjs/common": "^7.5.3",
 		"@nestjs/core": "^7.5.3",
 		"@nestjs/graphql": "^7.8.2",
-		"@nestjs/platform-express": "^7.5.3",
+		"@nestjs/platform-express": "^10.3.6",
 		"@nestjs/schedule": "^0.4.1",
 		"@prisma/client": "^2.11.0",
 		"apollo-server": "^2.19.0",
